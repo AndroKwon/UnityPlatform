@@ -17,6 +17,20 @@ namespace Jin.PlatformSDK.Common.Auth
         public delegate void ReceiveLoginResult(Error error, string token);
         public delegate void ReceiveResult(Error error, string data);
 
+        static PlatformAuth()
+        {
+            if (platformAuth != null)
+                return;
+
+#if UNITY_ANDROID
+            platformAuth = new PlatformAndroidAuth();
+#elif UNITY_IOS
+            // platformAuth = new PlatformIOSAuth();
+#else
+            // platformAuth = new PlatformEditorAuth();
+#endif
+        }
+
         public static string AuthInitialize(string providerName)
         {
             Debug.Log($"Andro_Platform Send {PlatformAuth.AUTH_INITIALIZE}");
@@ -52,20 +66,6 @@ namespace Jin.PlatformSDK.Common.Auth
                 return string.Empty;
 
             return platformAuth.IsLogin();
-        }
-
-        public static void Initialize()
-        {
-            if (platformAuth != null)
-                return;
-
-#if UNITY_ANDROID
-            platformAuth = new PlatformAndroidAuth();
-#elif UNITY_IOS
-            // platformAuth = new PlatformIOSAuth();
-#else
-            // platformAuth = new PlatformEditorAuth();
-#endif
         }
     }
 }

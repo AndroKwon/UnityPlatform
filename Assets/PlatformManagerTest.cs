@@ -15,8 +15,6 @@ public class PlatformManagerTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Jin.PlatformSDK.Common.Auth.PlatformAuth.Initialize();
-
         Jin.PlatformSDK.Common.Auth.PlatformAuth.AuthInitialize("facebook");
         Jin.PlatformSDK.Common.Auth.PlatformAuth.AuthInitialize("google");
         
