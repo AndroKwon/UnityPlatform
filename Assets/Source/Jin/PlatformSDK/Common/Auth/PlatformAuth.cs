@@ -12,6 +12,8 @@ namespace Jin.PlatformSDK.Common.Auth
         public static string AUTH_LOGOUT = "andro://logout";
         public static string AUTH_IS_LOGIN = "andro://isLogin";
 
+        public static string FacebookAppID = "378176306479216";
+
         private static IPlatformAuth platformAuth;
 
         public delegate void ReceiveLoginResult(Error error, string token);

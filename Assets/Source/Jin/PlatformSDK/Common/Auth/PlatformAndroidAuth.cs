@@ -11,8 +11,6 @@ namespace Jin.PlatformSDK.Common.Auth
         private PlatformAuth.ReceiveLoginResult _onLogin;
         private PlatformAuth.ReceiveResult _onLogout;
 
-        private readonly string FacebookAppID = "378176306479216";
-
         public PlatformAndroidAuth()
         {
             AuthDelegateManager.AddDelegate(PlatformAuth.AUTH_LOGIN, OnMessageLogin);
@@ -25,7 +23,7 @@ namespace Jin.PlatformSDK.Common.Auth
             vo.providerName = providerName;
 
             if(providerName == "facebook")
-                vo.facebookApplicationId = FacebookAppID;
+                vo.facebookApplicationId = PlatformAuth.FacebookAppID;
 
             var message = new UnityMessage();
 
