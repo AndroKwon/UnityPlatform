@@ -13,8 +13,8 @@ namespace Jin.PlatformSDK.Common.Auth
 
         public PlatformAndroidAuth()
         {
-            AuthDelegateManager.AddDelegate(PlatformAuth.AUTH_LOGIN, OnMessageLogin);
-            AuthDelegateManager.AddDelegate(PlatformAuth.AUTH_LOGOUT, OnMessageLogout);
+            AuthDelegateManager.AddDelegate(PlatformAuthData.AUTH_LOGIN, OnMessageLogin);
+            AuthDelegateManager.AddDelegate(PlatformAuthData.AUTH_LOGOUT, OnMessageLogout);
         }
 
         public string AuthInitialize(string providerName)
@@ -23,11 +23,11 @@ namespace Jin.PlatformSDK.Common.Auth
             vo.providerName = providerName;
 
             if(providerName == "facebook")
-                vo.facebookApplicationId = PlatformAuth.FacebookAppID;
+                vo.facebookApplicationId = PlatformAuthData.FacebookAppID;
 
             var message = new UnityMessage();
 
-            message.scheme = PlatformAuth.AUTH_INITIALIZE;
+            message.scheme = PlatformAuthData.AUTH_INITIALIZE;
             message.jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(vo);
 
             return AndroidMessageSender.Instance.GetSync(Newtonsoft.Json.JsonConvert.SerializeObject(message));
@@ -42,7 +42,7 @@ namespace Jin.PlatformSDK.Common.Auth
 
             var message = new UnityMessage();
 
-            message.scheme = PlatformAuth.AUTH_LOGIN;
+            message.scheme = PlatformAuthData.AUTH_LOGIN;
             message.jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(vo);
 
             AndroidMessageSender.Instance.GetAsync(Newtonsoft.Json.JsonConvert.SerializeObject(message));
@@ -54,7 +54,7 @@ namespace Jin.PlatformSDK.Common.Auth
 
             var message = new UnityMessage();
 
-            message.scheme = PlatformAuth.AUTH_LOGOUT;
+            message.scheme = PlatformAuthData.AUTH_LOGOUT;
 
             AndroidMessageSender.Instance.GetAsync(Newtonsoft.Json.JsonConvert.SerializeObject(message));
         }
@@ -63,14 +63,14 @@ namespace Jin.PlatformSDK.Common.Auth
         {
             var message = new UnityMessage();
 
-            message.scheme = PlatformAuth.AUTH_IS_LOGIN;
+            message.scheme = PlatformAuthData.AUTH_IS_LOGIN;
 
             return AndroidMessageSender.Instance.GetSync(Newtonsoft.Json.JsonConvert.SerializeObject(message));
         }
 
         private void OnMessageLogin(Message message)
         {
-            Debug.Log($"Andro_Platform Recv {PlatformAuth.AUTH_LOGIN}");
+            Debug.Log($"Andro_Platform Recv {PlatformAuthData.AUTH_LOGIN}");
 
             var error = JsonConvert.DeserializeObject<Error>(message.error);
             var login = JsonConvert.DeserializeObject<PlatformAuthData.RecvLogin>(message.jsonData);
@@ -80,7 +80,7 @@ namespace Jin.PlatformSDK.Common.Auth
 
         private void OnMessageLogout(Message message)
         {
-            Debug.Log($"Andro_Platform Recv {PlatformAuth.AUTH_LOGOUT}");
+            Debug.Log($"Andro_Platform Recv {PlatformAuthData.AUTH_LOGOUT}");
 
             var error = JsonConvert.DeserializeObject<Error>(message.error);
             var logout = JsonConvert.DeserializeObject<PlatformAuthData.RecvLogout>(message.jsonData);

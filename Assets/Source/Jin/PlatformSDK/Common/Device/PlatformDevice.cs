@@ -6,11 +6,6 @@ namespace Jin.PlatformSDK.Common.Device
 {
     public class PlatformDevice
     {
-        public static string INITIALIZE_SCHEME = "andro://initialize";
-        public static string GET_LANGUAGE_SCHEME = "andro://getLanguage";
-        public static string GET_COUNTRY_SCHEME = "andro://getCountry";
-        public static string GET_DEVICE_STORAGE_SPACE_SCHEME = "andro://getDeviceStorageSpace";
-
         private static IPlatformDevice _platformDevice;
 
         public void initialize()
@@ -28,7 +23,7 @@ namespace Jin.PlatformSDK.Common.Device
 
         public void InitializeDevice()
         {
-            Debug.Log($"Andro_Platform Send {PlatformDevice.INITIALIZE_SCHEME}");
+            Debug.Log($"Andro_Platform Send {PlatformDeviceData.INITIALIZE_SCHEME}");
 
             if (_platformDevice == null)
                 return;
@@ -38,7 +33,7 @@ namespace Jin.PlatformSDK.Common.Device
 
         public string GetLanguage()
         {
-            Debug.Log($"Andro_Platform Send {PlatformDevice.GET_LANGUAGE_SCHEME}");
+            Debug.Log($"Andro_Platform Send {PlatformDeviceData.GET_LANGUAGE_SCHEME}");
 
             if (_platformDevice == null)
                 return string.Empty;
@@ -48,7 +43,7 @@ namespace Jin.PlatformSDK.Common.Device
 
         public string GetCountry()
         {
-            Debug.Log($"Andro_Platform Send {PlatformDevice.GET_COUNTRY_SCHEME}");
+            Debug.Log($"Andro_Platform Send {PlatformDeviceData.GET_COUNTRY_SCHEME}");
 
             if (_platformDevice == null)
                 return string.Empty;
@@ -58,7 +53,7 @@ namespace Jin.PlatformSDK.Common.Device
 
         public string GetDeviceStorageSpace()
         {
-            Debug.Log($"Andro_Platform Send {PlatformDevice.GET_DEVICE_STORAGE_SPACE_SCHEME}");
+            Debug.Log($"Andro_Platform Send {PlatformDeviceData.GET_DEVICE_STORAGE_SPACE_SCHEME}");
 
             if (_platformDevice == null)
                 return string.Empty;

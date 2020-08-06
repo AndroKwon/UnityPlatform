@@ -1,5 +1,4 @@
-﻿#if UNITY_EDITOR || UNITY_ANDROID
-using Jin.PlatformSDK.Unity;
+﻿using Jin.PlatformSDK.Unity;
 using System;
 using UnityEngine;
 
@@ -7,13 +6,6 @@ namespace Jin.PlatformSDK.Common.Auth
 {
     public class PlatformAuth
     {
-        public static string AUTH_INITIALIZE = "andro://authInitialize";
-        public static string AUTH_LOGIN = "andro://login";
-        public static string AUTH_LOGOUT = "andro://logout";
-        public static string AUTH_IS_LOGIN = "andro://isLogin";
-
-        public static string FacebookAppID = "378176306479216";
-
         private static IPlatformAuth platformAuth;
 
         public delegate void ReceiveLoginResult(Error error, string token);
@@ -35,14 +27,14 @@ namespace Jin.PlatformSDK.Common.Auth
 
         public static string AuthInitialize(string providerName)
         {
-            Debug.Log($"Andro_Platform Send {PlatformAuth.AUTH_INITIALIZE}");
+            Debug.Log($"Andro_Platform Send {PlatformAuthData.AUTH_INITIALIZE}");
 
             return platformAuth.AuthInitialize(providerName);
         }
 
         public static void Login(string providerName, ReceiveLoginResult onLogin)
         {
-            Debug.Log($"Andro_Platform Send {PlatformAuth.AUTH_LOGIN}");
+            Debug.Log($"Andro_Platform Send {PlatformAuthData.AUTH_LOGIN}");
 
             if (platformAuth == null)
                 return;
@@ -52,7 +44,7 @@ namespace Jin.PlatformSDK.Common.Auth
 
         public static void Logout(ReceiveResult onLogout)
         {
-            Debug.Log($"Andro_Platform Send {PlatformAuth.AUTH_LOGOUT}");
+            Debug.Log($"Andro_Platform Send {PlatformAuthData.AUTH_LOGOUT}");
 
             if (platformAuth == null)
                 return;
@@ -62,7 +54,7 @@ namespace Jin.PlatformSDK.Common.Auth
         
         public static string IsLogin()
         {
-            Debug.Log($"Andro_Platform Send {PlatformAuth.AUTH_IS_LOGIN}");
+            Debug.Log($"Andro_Platform Send {PlatformAuthData.AUTH_IS_LOGIN}");
 
             if (platformAuth == null)
                 return string.Empty;
@@ -71,4 +63,3 @@ namespace Jin.PlatformSDK.Common.Auth
         }
     }
 }
-#endif
